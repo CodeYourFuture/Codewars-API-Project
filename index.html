@@ -1,17 +1,36 @@
 <!DOCTYPE html>
-<html lang="en-gb">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Codewars Badge</title>
-    <meta
-      name="description"
-      content="Extending HTML to create a new component"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <codewars-badge></codewars-badge>
-    <script async defer type="module" src="./codewars-badge.js"></script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codewars Badge</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .badge, .top-languages {
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 250px;
+      margin-bottom: 20px;
+    }
+    h2, h3 {
+      margin: 0 0 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Codewars Progress</h1>
+
+  <!-- Badge component -->
+  <codewars-badge></codewars-badge>
+
+  <!-- Top languages component -->
+  <codewars-top-languages></codewars-top-languages>
+
+  <!-- JS Modules -->
+  <script type="module" src="codewars-badge.js"></script>
+  <script type="module" src="codewars-top-languages.js"></script>
+</body>
 </html>
