@@ -6,46 +6,91 @@ class CodeWarsBadge extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.userName = "CodeYourFuture";
-    this.userData = [];
+    this.userName = "tanibien";
   }
 
-  connectedCallback() {
-    this.fetchActivity()
-      .then(() => {
-        this.render();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  async connectedCallback() {
+    try {
+      const response = await fetch(`https://www.codewars.com/api/v1/users/${this.userName}`);
+      const data = await response.json();
+      this.render(data);
+    } catch (e) {
+      this.shadowRoot.innerHTML = `<p>Error loading profile</p>`;
+    }
   }
 
-  // fetch the data from the Codewars API
-  async fetchActivity() {
-    const response = await fetch(
-      `https://www.codewars.com/api/v1/users/${this.userName}`
-    );
-    const data = await response.json();
-    this.userData = data; // set the userData property with the fetched data
-  }
-
-  render() {
+  render(data) {
+    const color = data.ranks.overall.color || "grey";
+    // Чтобы гарантировать контраст, мы используем белый текст на темном фоне
     this.shadowRoot.innerHTML = `
-    <style>
-        :host {
-           --rank: ${this.userData.ranks.overall.color};
-           font: 600 100%/1 system-ui, sans-serif;
+      <style>
+        .badge {
+          background: #1e1e1e;
+          color: #ffffff;
+          border: 2px solid #ffffff;
+          border-left: 10px solid ${color};
+          padding: 20px;
+          border-radius: 8px;
+          width: 280px;
+          margin-bottom: 20px;
         }
-        data { 
-            color: var(--rank);
-            border: 3px solid; 
-            padding: .25em .5em;
-        }      
+        .name { font-size: 1.5rem; font-weight: bold; margin-bottom: 10px; }
+        .rank { font-weight: bold; color: #ffffff; background: #444; padding: 4px 8px; border-radius: 4px; display: inline-block; }
+        .info { margin-top: 15px; font-size: 1.1rem; }
       </style>
-        <data value="${this.userData.ranks.overall.score}">
-        ${this.userData.ranks.overall.name}
-        </data>`;
+      <section class="badge" aria-label="Codewars Profile">
+        <div class="name">${data.username}</div>
+        <div class="rank">Rank: ${data.ranks.overall.name}</div>
+        <div class="info">
+          <div>Honor: <strong>${data.honor}</strong></div>
+        </div>
+      </section>
+    `;
+  }
+}
+
+class CodewarsLanguages extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.userName = "tanibien";
+  }
+
+  async connectedCallback() {
+    try {
+      const response = await fetch(`https://www.codewars.com/api/v1/users/${this.userName}`);
+      const data = await response.json();
+      this.render(data.ranks.languages);
+    } catch (e) { console.error(e); }
+  }
+
+  render(langs) {
+    let listItems = "";
+    for (let l in langs) {
+      // Убираем сложные роли, используем стандартные теги для 100% Accessibility
+      listItems += `<li style="margin-bottom: 10px;">${l}: <strong>${langs[l].name}</strong></li>`;
+    }
+
+    this.shadowRoot.innerHTML = `
+      <style>
+        .container {
+          background: #1e1e1e;
+          color: #ffffff;
+          padding: 20px;
+          border-radius: 8px;
+          width: 280px;
+          border: 1px solid #333;
+        }
+        h2 { color: #ffffff; font-size: 1.2rem; margin-top: 0; }
+        ul { list-style: none; padding: 0; margin: 0; }
+      </style>
+      <section class="container" aria-label="Languages">
+        <h2>Coding Skills</h2>
+        <ul>${listItems}</ul>
+      </section>
+    `;
   }
 }
 
 customElements.define("codewars-badge", CodeWarsBadge);
+customElements.define("codewars-languages", CodewarsLanguages);
