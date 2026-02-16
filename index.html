@@ -1,17 +1,30 @@
-<!DOCTYPE html>
-<html lang="en-gb">
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Codewars Badge</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Extending HTML to create a new component"
+      content="Codewars profile integration using Web Components and Fetch API"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Codewars Badge - tanibien</title>
+    <style>
+      body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+      }
+    </style>
   </head>
   <body>
-    <codewars-badge></codewars-badge>
-    <script async defer type="module" src="./codewars-badge.js"></script>
+    <main>
+      <h1 style="text-align: center">My Codewars Progress</h1>
+      <codewars-badge></codewars-badge>
+      <codewars-languages></codewars-languages>
+    </main>
+    <script type="module" src="./codewars-badge.js"></script>
   </body>
 </html>
