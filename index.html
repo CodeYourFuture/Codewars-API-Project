@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-gb">
   <head>
     <meta charset="utf-8" />
@@ -9,9 +9,30 @@
       content="Extending HTML to create a new component"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+      integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
-  <body>
-    <codewars-badge></codewars-badge>
-    <script async defer type="module" src="./codewars-badge.js"></script>
+  <body style="background: linear-gradient(135deg, #09090b, #111827)">
+    <app-header></app-header>
+    <app-hero></app-hero>
+    
+    <footer
+      style="
+        background: #09090b;
+        color: #f8fafc;
+        padding: 50px 80px 20px;
+        border-top: 1px solid #27272a;
+      "
+      ;
+    >
+      <app-footer></app-footer>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
   </body>
 </html>

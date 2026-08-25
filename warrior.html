@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Code Warriors</title>
+  </head>
+  <body style="
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background:linear-gradient(135deg, #09090B, #111827);
+    align-items:space-around;
+    gap:50px";
+
+
+>
+    <header>
+      <app-header></app-header>
+    </header>
+    <main>
+
+        <warrior-profile></warrior-profile>
+    </main>
+
+    <footer style="
+    width:auto;
+    background: #09090B;
+    color: #F8FAFC;
+    padding: 5px 2px 4px;
+    border-top: 1px solid #27272A;
+    margin-bottom: 2px;">
+      <app-footer></app-footer>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
